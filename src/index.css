@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-prim: #e8021f;
+  --color-primary: #e8021f;
   --section-dark-bg: #1b1b1b;
   --section-light-bg: #222222;
   --text-light: #999;
@@ -18,9 +18,15 @@
 }
 
 @layer base {
-  html,
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: #111;
+    font-family: var(--font-roboto);
+    color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -28,4 +34,62 @@
   .menu {
     transition: var(--transition-regular);
   }
+
+  .menu li a {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: var(--transition-regular);
+  }
+
+  .menu li a::after {
+    content: "";
+    position: absolute;
+    /* top: 100%; */
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    transition: var(--transition-regular);
+    z-index: -1;
+  }
+
+  .menu li a.active {
+    color: var(--color-primary);
+  }
+  .menu li a.active::after {
+    width: 100%;
+  }
+
+  /* .menu li a:hover::after {
+    width: 100%;
+  }
+  .menu li a:hover {
+    color: var(--color-primary);
+  } */
+
+  @media (hover: hover) {
+    .menu li a:hover {
+      color: var(--color-primary);
+    }
+
+    .menu li a:hover::after {
+      width: 100%;
+    }
+  }
+
+  @media (hover: none) {
+    .menu li a:active {
+      color: var(--color-primary);
+      opacity: 0.6;
+    }
+  }
 }
+
+/* @media screen and (max-width: 1023px) {
+  .menu li a::after {
+    display:none;
+  }
+} */
