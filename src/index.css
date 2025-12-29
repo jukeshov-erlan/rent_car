@@ -6,8 +6,6 @@
   --section-dark-bg: #1b1b1b;
   --section-light-bg: #222222;
   --text-light: #999;
-  --color-white: #fff;
-  --color-black: #000;
 
   --font-bricolage: "Bricolage Grotesque", sans-serif;
   --font-roboto: "Roboto", sans-serif;
@@ -31,6 +29,7 @@
 }
 
 @layer components {
+  /* Navbar */
   .menu {
     transition: var(--transition-regular);
   }
@@ -63,13 +62,6 @@
     width: 100%;
   }
 
-  /* .menu li a:hover::after {
-    width: 100%;
-  }
-  .menu li a:hover {
-    color: var(--color-primary);
-  } */
-
   @media (hover: hover) {
     .menu li a:hover {
       color: var(--color-primary);
@@ -86,10 +78,77 @@
       opacity: 0.6;
     }
   }
-}
 
-/* @media screen and (max-width: 1023px) {
-  .menu li a::after {
-    display:none;
+  /* Hero */
+  .hero-slide {
+    position: relative;
+    overflow: hidden;
   }
-} */
+
+  .hero-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    animation: Anim-zoom 10s infinite alternate ease-in-out;
+    will-change: transform;
+  }
+
+  .hero-slide1::before {
+    background-image: url(assets/images/hero-slide-4.jpg);
+  }
+
+  .hero-slide2::before {
+    background-image: url(assets/images/hero-slide-6.jpg);
+  }
+
+  .hero-slide3::before {
+    background-image: url(assets/images/hero-slide-7.jpg);
+  }
+
+  .hero-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8) 20%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+
+  .swiper-slide-active .hero-content > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .swiper-slide-active .hero-title {
+    transition-delay: 0.2s;
+  }
+  .swiper-slide-active .hero-subtitle {
+    transition-delay: 0.4s;
+  }
+  .swiper-slide-active .hero-pere {
+    transition-delay: 0.6s;
+  }
+ 
+
+  @keyframes Anim-zoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.15);
+    }
+  }
+}
