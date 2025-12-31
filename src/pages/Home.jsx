@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { RiArrowRightUpLine } from "react-icons/ri";
+import About from "./About";
+
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -32,6 +34,7 @@ const SLIDES = [
 const Home = () => {
   return (
     <>
+
       {/* Hero */}
       <section className="hero h-screen w-full overflow-hidden bg-black">
         <Swiper
@@ -161,6 +164,7 @@ const Home = () => {
           </SwiperSlide> */}
         </Swiper>
       </section>
+      <About />
     </>
   );
 };
